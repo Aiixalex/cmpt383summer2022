@@ -3,14 +3,14 @@
 package main
 
 import (
-    "fmt"
-    "strings"
+	"fmt"
+	"strings"
 )
 
 func main() {
-    test_makeAdder()
-    test_makeIncrementer()
-    test_mapstr()
+	test_makeAdder()
+	test_makeIncrementer()
+	test_mapstr()
 }
 
 //
@@ -19,9 +19,9 @@ func main() {
 // to a number.
 //
 func makeAdder(n int) func(int) int {
-    return func(a int) int {
-        return a + n
-    }
+	return func(a int) int {
+		return a + n
+	}
 }
 
 //
@@ -37,12 +37,11 @@ func makeAdder(n int) func(int) int {
 // int) at run-time.
 //
 func test_makeAdder() {
-    add5 := makeAdder(5)
-    n := 1
-    fmt.Printf("n=%v\n", n)
-    fmt.Printf("n=%v\n", add5(n))
+	add5 := makeAdder(5)
+	n := 1
+	fmt.Printf("n=%v\n", n)
+	fmt.Printf("n=%v\n", add5(n))
 }
-
 
 //
 // Lets call a value that supports these two operations an incrementer:
@@ -62,29 +61,28 @@ func test_makeAdder() {
 // called a **getter**.
 //
 func makeIncrementer() (func(), func() int) {
-    // n is the value to be incremented
-    n := 0
-    inc := func() {
-        n++
-    }
-    get := func() int {
-        return n
-    }
-    return inc, get
+	// n is the value to be incremented
+	n := 0
+	inc := func() {
+		n++
+	}
+	get := func() int {
+		return n
+	}
+	return inc, get
 }
 
 func test_makeIncrementer() {
-    inc_a, get_a := makeIncrementer()
-    inc_b, get_b := makeIncrementer()
-    for i := 1; i <= 5; i++ {
-        inc_a() // a is incremented once
-        inc_b() // b is incremented twice
-        inc_b()
-    }
-    fmt.Printf("get_a(): %v\n", get_a())
-    fmt.Printf("get_b(): %v\n", get_b())
+	inc_a, get_a := makeIncrementer()
+	inc_b, get_b := makeIncrementer()
+	for i := 1; i <= 5; i++ {
+		inc_a() // a is incremented once
+		inc_b() // b is incremented twice
+		inc_b()
+	}
+	fmt.Printf("get_a(): %v\n", get_a())
+	fmt.Printf("get_b(): %v\n", get_b())
 }
-
 
 //
 // mapstr makes a new slice of strings by applying a string function to every
@@ -102,41 +100,41 @@ func test_makeIncrementer() {
 // in lst.
 //
 func mapstr(lst []string, f func(string) string) []string {
-    result := make([]string, len(lst))
-    for i, s := range lst {
-        result[i] = f(s)
-    }
-    return result
+	result := make([]string, len(lst))
+	for i, s := range lst {
+		result[i] = f(s)
+	}
+	return result
 }
 
 func makeTitle(s string) string {
-    return "Title: " + s
+	return "Title: " + s
 }
 
 func composeStr(f, g func(string) string) func(string) string {
-    return func(s string) {
-        return f(g(s))
-    }
+	return func(s string) string {
+		return f(g(s))
+	}
 }
 
 func composeFloat64(f, g func(float64) float64) func(float64) float64 {
-    return func(s float64) {
-        return f(g(s))
-    }
+	return func(s float64) float64 {
+		return f(g(s))
+	}
 }
 
 func test_mapstr() {
-    movies := []string{"star wars", "the godfather", 
-                       "everything everywhere all at once"}
-    fmt.Println(movies)
+	movies := []string{"star wars", "the godfather",
+		"everything everywhere all at once"}
+	fmt.Println(movies)
 
-    // strings.Title returns a new string with the first letter of each word
-    // capitalized
-    modMovies := mapstr(movies, strings.Title)
-    modMovies = mapstr(modMovies, makeTitle)
-    //
-    // Question: How can you rewrite these two calls to mapstr in a single
-    // line of code?
-    //
-    fmt.Println(modMovies)
+	// strings.Title returns a new string with the first letter of each word
+	// capitalized
+	modMovies := mapstr(movies, strings.Title)
+	modMovies = mapstr(modMovies, makeTitle)
+	//
+	// Question: How can you rewrite these two calls to mapstr in a single
+	// line of code?
+	//
+	fmt.Println(modMovies)
 }
