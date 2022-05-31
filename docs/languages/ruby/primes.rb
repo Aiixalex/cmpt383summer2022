@@ -1,12 +1,12 @@
 # primes.rb
 
 #
-# Returns true if n is prime, false otherwise. Uses trial division to find
-# factors.
+# Returns true if n is a prime number, false otherwise. Uses trial division to
+# find factors.
 #
-# Ruby functions that end with ? customarily return a bool, i.e. true or
-# false.
+# Ruby functions that return a boolean value customarily end with ?.
 #
+
 def is_prime?(n)
     if n < 2
         false
@@ -23,6 +23,23 @@ def is_prime?(n)
         return true
     end
 end
+
+#
+# An alternative implementation using if as a modifier.
+#
+# def is_prime?(n)
+#     return false if n < 2
+#     return true if n == 2
+#     return false if n.even?
+#
+#     candidate = 3
+#     while candidate * candidate <= n
+#         return false if n % candidate == 0
+#         candidate += 2
+#     end
+#     return true
+# end
+
 
 #
 # Returns the number of primes less than the integer n.
