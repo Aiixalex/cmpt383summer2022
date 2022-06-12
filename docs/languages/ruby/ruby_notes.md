@@ -28,7 +28,7 @@ $ irb -I . -r prog.rb
 
 ## Ruby Lectures
 
-### Lecture 1,2 Ruby: Basics
+### Lecture 1, 2 Ruby: Basics
 
 - [hello_world.rb](hello_world.rb), [hello_name.rb](hello_name.rb)
 - [count_up.rb](count_up.rb), [count_down.rb](count_down.rb)
@@ -41,19 +41,23 @@ $ irb -I . -r prog.rb
 ### Lecture 3 Ruby: Arrays, Slices, and Hashes
 
 - [linesize.rb](linesize.rb): prints lines in text files that are greater than
-  80 characters
 - [Ruby array: each and map](each_and_map.md)
+  80 characters
 - [Slices and ranges](slices_and_ranges.md)
 - [sort.rb](sort.rb): a demonstration of sorting in Ruby
-- [Hashes](hashes.md) and [symbols](symbols.md); [filedemo.rb](filedemo.rb)
-- [wordcount.rb](wordcount.rb): using hashes to count words in a file
+- [Hashes](hashes.md) and [symbols](symbols.md)
+- [filedemo.rb](filedemo.rb): prints a count of file name extensions, from
+  most to least
+- [wordcount.rb](wordcount.rb): uses hashes to count top 10 most frequent
+  words in a file
 
 ### Lecture 4 Ruby: Strings and Regular Expressions
 
 - [Strings](strings.md)
 - [Regular expressions](regex.md)
+- [phoneNumCheck.rb](phoneNumCheck.rb)
 
-### Lecture 5,6 Ruby: Classes and Objects
+### Lecture 5, 6 Ruby: Classes and Objects
 
 - [Object-oriented programming in Ruby](objects.md) 
 - [shapes1.rb](shapes1.rb)

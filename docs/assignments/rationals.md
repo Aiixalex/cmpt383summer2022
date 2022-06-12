@@ -20,8 +20,8 @@ implementation to help the marker understand your code.
 3. **Get the denominator** Returns the denominator of a given rational.
 
 4. **Get the numerator and denominator as a pair** Returns both the numerator
-   and denominator. Call this operation *split*, i.e. splitting 5/3 gives (5,
-   3).
+   and denominator. Call this operation *pair*, i.e. calling *pair* on 5/3
+   gives (5, 3).
 
 5. **Convert to a string** Returns the usual string representation of the
    rational. For instance, 5/3 would be the string "5/3".
@@ -60,8 +60,8 @@ implementation to help the marker understand your code.
     the greatest common divisor (GCD) algorithm to help do this. Be careful in
     the case where the numerator or denominator is negative.
 
-15. **Harmonic sum** Given an integer $n > 0$, return a rational equal to 
-    $H_n = \frac{1}{1} + \frac{1}{2} + \frac{1}{3} + \ldots + \frac{1}{n}$.
+15. **Harmonic sum** Given an integer $n > 0$, return a rational equal to $H_n
+    = \frac{1}{1} + \frac{1}{2} + \frac{1}{3} + \ldots + \frac{1}{n}$.
 
 
 ## General Notes
@@ -81,8 +81,8 @@ doesn't demonstrate the understanding of the language we're looking for.
 
 Handling *invalid* fractions is important, and we want to see you use an
 error-handling strategy that is recommended for your language. *Don't* let the
-program crash when something *expected* goes wrong (e.g. dividing by 0 should
-never crash the program).
+program crash when *ordinary errors* occur (e.g. dividing by 0 should never
+crash the program).
 
 
 ## Go-specific Notes
@@ -155,39 +155,111 @@ Use `errors.New` to create error values.
 More details may be posted here closer to the assignment deadline.
 
 
-## Ruby-specific Notes
+## Ruby-specific Notes {#ruby-specific-notes}
 
-Represent the rationals using a class.
+- Represent the rationals using a class.
 
-Ruby already has a standard class called `Rational` that implements rational
-numbers. *Don't* use it in your implementation. Create your own original
-implementation of rationals called `MyRational` that *doesn't* use Ruby's
-`Rational` anywhere.
+- Ruby already has a standard class called `Rational` that implements rational
+  numbers. **Don't** use it. Create your own original implementation of
+  rationals called `MyRational` that *doesn't* use Ruby's `Rational` anywhere.
 
-In addition to the equality and less than operators, also implement the
-*spaceship operator* `<=>`, so that `MyRational` objects can be sorted with
-Ruby's standard sorting function.
+- Use Ruby **exceptions** to handle errors. For example, use `raise` to cause
+  an exception due to an error, e.g. `raise 'MyRational: denominator cannot be
+  0'`.
+
+- For part 2 and 3, name the methods `num` and `denom`, and implement them
+  using `attr_reader`.
+
+- For part 4, please name the method `pair`, and it should return an array
+  `[n,d]`, where `n` is the numerator and `d` is the denominator.
+
+- For part 5, please name the method `to_s`.
+
+- For part 6, please name the method `to_f`. In addition, in the standard Ruby
+  `Integer` class add a method called `to_mr` that returns a new `MyRational`
+  equivalent to the integer. For example, the expression `5.to_mr` returns a
+  new `MyRational` with numerator 5 and denominator 1.
+
+- For part 7, please implement as the standard equality operator `==` as a
+  method.
+
+- For part 8, please implement the *spaceship operator* `<=>` as a method, and
+  include the [Comparable
+  module](https://docs.ruby-lang.org/en/2.5.0/Comparable.html) to get all the
+  relational operators.
+
+- For part 9, please name the method `int?`.
+
+- For parts 10, 11, and 12, implement the standard arithmetic operators `+`,
+  `*`, and `/`.
+
+- For part 13, please name the method `invert`.
+
+- For part 14, please name the method `to_lowest_terms`.
 
 More details may be posted here closer to the assignment deadline.
 
 
 ## Racket-specific Notes
 
-Represent rationals using a regular list and functions. Don't use any special
-Racket data structures for this.
+- Use only regular Racket lists, and basic Racket functions as discussed in
+  the notes. **Don't** use any special Racket data structures, e.g. *don't*
+  use vectors, or structs, or hashes, ....
 
-Racket has built-in support for rational numbers. *Don't* use it anywhere in
-your implementation. Create your own original implementation of rationals that
-*doesn't* use the built-in rationals anywhere.
+  Importantly, **don't** use Racket's built-in rationals anywhere in your
+  rational code. Racket uses rational by default, e.g. `(/ 3 7)` returns the
+  rational `3/7`. Look up the Racket function `exact->inexact`.
+
+- Represent your rationals using lists. For example, you could represent
+  $\frac{3}{7}$ as `'(rational 3 7)`.
+
+- Racket has exceptions, and so please use `raise` when something goes wrong.
+  For example, `(raise "invalid denominator")` will raise an exception that
+  can be caught by other code.
+
+- For *part 1*, call your function `make-rational`. It should work if you pass
+  it one or two parameters. For example, `(make-rational 3 7)` returns a
+  rational representing $\frac{3}{7}$. `(make-rational 5)` returns a rational
+  representing $\frac{5}{1}$. One way to handle multiple parameters is to
+  define your function like this: `(define (make-rational . args) ... )`.
+  `args` will then be a list of the passed-in arguments.
+
+- For part 2 and 3, name the functions `numerator` and `denominator`. For
+  example, `(numerator (make-rational 3 7))` returns 3.
+
+- For part 4, call the function `num-denom`. It returns a list containing the
+  numerator and denominator, e.g. `(num-denom (make-rational 3 7))` returns
+  `'(3 7)`.
+
+- For part 5, call the function `to-string`. For example, `(num-denom
+  (make-rational 3 7))` returns the string `"3/7"`.
+
+- For part 6, call the function `to-float`. For example, `(to-float
+  (make-rational 3 7))` returns `0.42857142857142855` in DrRacket.
+  **Important**: the returned value should *not* be a Racket rational, e.g.
+  `(rational? (to-float r))` should always return `#f` (false).
+
+- For part 7, call the function `r=`.
+
+- For part 8, call the function `r<`. Be careful about with negative values!
+
+- For part 9, call the function `is-int?`.
+
+- For parts 10, 11, 12, and 13, call the functions `r+`, `r*`, `r/`, and
+  `invert`.
+
+- For part 14, call the function `to-lowest-terms`.
+
+- For part 15, call the function `harmonic-sum`.
 
 More details may be posted here closer to the assignment deadline.
 
 
 ## Haskell-specific Notes
 
-Haskell has a standard `Rational` type. *Don't* use it in your implementation.
-Create your own original implementation of rationals in a typeclass called
-`MyRational` that doesn't use Haskell's `Rational` anywhere.
+Haskell has a standard `Rational` type. **Don't** use it in your
+implementation. Create your own original implementation of rationals in a
+typeclass called `MyRational` that doesn't use Haskell's `Rational` anywhere.
 
 More details may be posted here closer to the assignment deadline.
 
