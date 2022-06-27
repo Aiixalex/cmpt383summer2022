@@ -204,11 +204,17 @@ More details may be posted here closer to the assignment deadline.
 
 - Use only regular Racket lists, and basic Racket functions as discussed in
   the notes. **Don't** use any special Racket data structures, e.g. *don't*
-  use vectors, or structs, or hashes, ....
+  use vectors, or structs, or hashes, .... It may be helpful to look at the
+  code in [point.rkt](point.rkt) for ideas.
 
-  Importantly, **don't** use Racket's built-in rationals anywhere in your
-  rational code. Racket uses rational by default, e.g. `(/ 3 7)` returns the
-  rational `3/7`. Look up the Racket function `exact->inexact`.
+- **Don't** use Racket's built-in rationals anywhere in your rational code.
+  Racket uses rational by default, e.g. `(/ 3 7)` returns the rational `3/7`,
+  and if you're not careful you could use them accidentally. Look up the
+  Racket function `exact->inexact`.
+
+- **Don't** use any mutating functions, like `set!`. Most mutating Racket
+  functions end with `!`, and so don't use any of those. Use just non-mutating
+  functions as shown in the notes and lectures.
 
 - Represent your rationals using lists. For example, you could represent
   $\frac{3}{7}$ as `'(rational 3 7)`.
@@ -220,24 +226,23 @@ More details may be posted here closer to the assignment deadline.
 - For *part 1*, call your function `make-rational`. It should work if you pass
   it one or two parameters. For example, `(make-rational 3 7)` returns a
   rational representing $\frac{3}{7}$. `(make-rational 5)` returns a rational
-  representing $\frac{5}{1}$. One way to handle multiple parameters is to
-  define your function like this: `(define (make-rational . args) ... )`.
-  `args` will then be a list of the passed-in arguments.
+  representing $\frac{5}{1}$. To handle multiple parameters define your
+  function like this: `(define (make-rational . args) ... )`. `args` will then
+  be a list of the passed-in arguments.
 
-- For part 2 and 3, name the functions `numerator` and `denominator`. For
-  example, `(numerator (make-rational 3 7))` returns 3.
+- For part 2 and 3, name the functions `r-numerator` and `r-denominator`
+  (Racket already has built-in functions called `numerator` and
+  `denominator`). For example, `(r-numerator (make-rational 3 7))` returns 3.
 
 - For part 4, call the function `num-denom`. It returns a list containing the
   numerator and denominator, e.g. `(num-denom (make-rational 3 7))` returns
   `'(3 7)`.
 
-- For part 5, call the function `to-string`. For example, `(num-denom
+- For part 5, call the function `to-string`. For example, `(to-string
   (make-rational 3 7))` returns the string `"3/7"`.
 
 - For part 6, call the function `to-float`. For example, `(to-float
   (make-rational 3 7))` returns `0.42857142857142855` in DrRacket.
-  **Important**: the returned value should *not* be a Racket rational, e.g.
-  `(rational? (to-float r))` should always return `#f` (false).
 
 - For part 7, call the function `r=`.
 
@@ -251,6 +256,14 @@ More details may be posted here closer to the assignment deadline.
 - For part 14, call the function `to-lowest-terms`.
 
 - For part 15, call the function `harmonic-sum`.
+
+- You can time code (such as insertion sort) using [Racket's `(time ...)` form](https://docs.racket-lang.org/reference/time.html#%28form._%28%28lib._racket%2Fprivate%2Fmore-scheme..rkt%29._time%29%29), e.g.:
+
+  ```lisp
+  > (time (num-primes-less-than 10000))
+  cpu time: 1531 real time: 1528 gc time: 607
+  1229
+  ```
 
 More details may be posted here closer to the assignment deadline.
 
@@ -266,7 +279,8 @@ More details may be posted here closer to the assignment deadline.
 
 ## Prolog
 
-Prolog is quite different than the other languages in this course, and so an
-assignment more specific to Prolog will be put here when it's ready.
+Prolog is quite different than the other languages in this course, and so it's
+possible an assignment more specific to Prolog may be used instead of the
+rational numbers one.
 
 More details may be posted here closer to the assignment deadline.

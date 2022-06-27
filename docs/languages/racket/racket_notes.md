@@ -7,7 +7,7 @@ command-line version.
 
 ## Coding Style
 
-Racket supports many different languages, and we will be using the core Raket
+Racket supports many different languages, and we will be using the core Racket
 language. To ensure this, put this line at the top of all your Racket source
 files:
 
@@ -17,12 +17,12 @@ files:
 ;; ... your Racket code ...
 ```
 
-While Racket/Scheme has loops, we *won't* them in our discussion of Racket. We
-will also *not* be using any mutating Racket functions.
+While Racket/Scheme has loops, we *won't* use them in our discussion of
+Racket. We will also *not* be using any mutating Racket functions.
 
-Instead we will focus on functional programming, a style of programming
+Instead we will focus on **functional programming**, a style of programming
 pioneered by LISP. This is good preparation for Haskell (the language we'll
-study after Racket), which does not allow loops or mutating functions.
+study after Racket), which more strictly forbids loops and mutating functions.
 
 
 ## Racket Lectures
@@ -36,6 +36,7 @@ study after Racket), which does not allow loops or mutating functions.
 ### Lecture 3 Racket: Lists, Symbols, and Recursion
 
 - [Racket lists and recursion](racket_lists_and_recursion.md)
+- An implementation of (x, y) points: [point.rkt](point.rkt)
 - [count_up.rkt](count_up.rkt)
 - [count_down.rkt](count_down.rkt)
 - [numbered_list.rkt](numbered_list.rkt)
@@ -47,11 +48,19 @@ study after Racket), which does not allow loops or mutating functions.
 ### Lecture 4 Racket: Functional Programming
 
 - [Racket maps, filters, and folds](racket_maps_filters_folds.md)
+- [Lecture notes on counting symbols](racketSymbolCountingNotes.md)
 
 ### Lecture 5,6 Racket: Higher Order Functions
 
 - [Higher order functions](racket_higher_order_functions.md)
-- [The Racket match form](racket_match_form.md)
 
 ### Lecture 7 Racket: Macros
+- [Higher order functions](racket_higher_order_functions.md)
+
+### Skipped Topics
+
+The following topics were not covered in lectures, and won't appear on quizzes
+or the final exam:
+
+- [he Racket match form](racket_match_form.md)
 - [Racket macros](racket_macros.md)
