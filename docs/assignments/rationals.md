@@ -205,12 +205,11 @@ More details may be posted here closer to the assignment deadline.
 - Use only regular Racket lists, and basic Racket functions as discussed in
   the notes. **Don't** use any special Racket data structures, e.g. *don't*
   use vectors, or structs, or hashes, .... It may be helpful to look at the
-  code in [point.rkt](point.rkt) for ideas.
+  code in [point.rkt](../languages/racket/point.rkt) for ideas.
 
-- **Don't** use Racket's built-in rationals anywhere in your rational code.
-  Racket uses rational by default, e.g. `(/ 3 7)` returns the rational `3/7`,
-  and if you're not careful you could use them accidentally. Look up the
-  Racket function `exact->inexact`.
+- **Don't** use Racket's built-in rationals to represent or process your
+  rationals, except in `to-float`. Look up the Racket function
+  `exact->inexact`.
 
 - **Don't** use any mutating functions, like `set!`. Most mutating Racket
   functions end with `!`, and so don't use any of those. Use just non-mutating
@@ -242,7 +241,8 @@ More details may be posted here closer to the assignment deadline.
   (make-rational 3 7))` returns the string `"3/7"`.
 
 - For part 6, call the function `to-float`. For example, `(to-float
-  (make-rational 3 7))` returns `0.42857142857142855` in DrRacket.
+  (make-rational 3 7))` returns `0.42857142857142855` in DrRacket. Look up the
+  Racket function `exact->inexact`.
 
 - For part 7, call the function `r=`.
 
@@ -270,10 +270,44 @@ More details may be posted here closer to the assignment deadline.
 
 ## Haskell-specific Notes
 
-Haskell has a standard `Rational` type. **Don't** use it in your
-implementation. Create your own original implementation of rationals in a
-typeclass called `MyRational` that doesn't use Haskell's `Rational` anywhere.
+- Download the file [rational.hs](haskell/rational.hs) and type your answers
+  there. The required functions, including their type signatures, are given in
+  comments.
 
+- **Don't** use Haskell's standard `Rational` type in your implementation.
+
+- **The error-handling rules are changed for this assignment**. When an error
+  occurs (such as division by zero), your code should call the `error "some
+  message"` function. This crashes the program with no way to recover, which
+  is clearly bad. However, we don't have enough time in this course to learn
+  Haskell's preferred way of handling errors (e.g. something like the `Maybe`
+  type).
+
+- **The marking scheme has been adjusted for this assignment**. The three
+  sections *number sorting*, *string sorting*, and *rational sorting* have
+  been **removed**. Only marks for the insertion sort implementation (that
+  sorts any list of values implementing `Ord`) will be given. So this
+  assignment is out of 27 (instead of 36).
+
+- Here are two ways to calculate timings for your Haskell code:
+
+  1. Add a `main` function to the end of your
+     [rational.hs](haskell/rational.hs) file and call the sorting code there.
+     *Compile* this file, and time it using the command-line *time* command.
+     See [mainDemo.hs](haskell/mainDemo.hs) for an example of how to write
+     `main`, how to get a list of random numbers, and how to compile it with
+     `ghc`.
+
+  2. In the Haskell interpreter `ghci` use the command `:set +s`. This will
+     show you the running time, in seconds, for each evaluated expression:
+
+     ```haskell
+     > :set +s
+     > product [1..10000]
+     ... huge number ...
+     (0.54 secs, 112,187,640 bytes)
+     ```
+  
 More details may be posted here closer to the assignment deadline.
 
 
