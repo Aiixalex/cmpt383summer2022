@@ -1,6 +1,5 @@
 # Introduction to Prolog
 
-
 ## What is Prolog?
 
 Prolog is a [logic programming
@@ -694,6 +693,7 @@ male(doug).
 female(val).
 female(ada).
 
+% parents(Child, Mother, Father)
 parents(doug, ada, bob).
 parents(val, ada, bob).
 ```

@@ -54,8 +54,7 @@ L = [1, 2, 3, 4, 5]
 Implement your own version called `numlist2(Lo, Hi, Result)`. Of course, don't
 use `numlist` anywhere!
 
-[Here's some documentation for numlist, and other useful list functions]
-(http://www.swi-prolog.org/pldoc/man?section=lists).
+[Here's some documentation for numlist, and other useful list functions](http://www.swi-prolog.org/pldoc/man?section=lists).
 
 
 ## Question 3: min and max
@@ -175,7 +174,7 @@ N = 15
 Here's another example:
 
 ```prolog
-?- magic([2,4,6,8,10,12,14,16,18], Result. N).
+?- magic([2,4,6,8,10,12,14,16,18], Result, N).
 Result = [2, 10, 18, 12, 14, 4, 16, 6, 8],
 N = 30
 ```
